@@ -1,0 +1,4 @@
+creation_rules:
+  # Encrypt all YAML files in this directory
+  - path_regex: .*\.yaml$
+    age: age1msk44qnlr795tc4m7ddw5z7sue7849nhll4wnx2qt3ruaesgye0q2rmx27
