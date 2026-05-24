@@ -1,0 +1,72 @@
+# 1. The Application Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-app
+  namespace: demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+      - name: web-app
+        image: kennethreitz/httpbin
+        ports:
+        - containerPort: 80
+---
+# 2. The Application ClusterIP Service (Internal Only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-web-app-svc
+  namespace: demo-app
+spec:
+  selector:
+    app: my-web-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP  # Notice: No external IP or NodePort needed!
+---
+# 3. The Cloudflare Tunnel Connector
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared-connector
+  namespace: demo-app
+spec:
+  replicas: 2 # Running 2 replicas ensures high availability across your nodes
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:latest
+        args:
+        - tunnel
+        - --no-autoupdate
+        - run
+        env:
+        - name: TUNNEL_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: cloudflare-tunnel-token
+              key: token
+        livenessProbe:
+          httpGet:
+            path: /ready
+            port: 2000
+          initialDelaySeconds: 10
+          periodSeconds: 10
