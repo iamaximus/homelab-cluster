@@ -33,36 +33,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-  type: ClusterIP  # Notice: No external IP or NodePort needed!
+  type: ClusterIP
 ---
-# 3. The Cloudflare Tunnel Connector
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: cloudflared-connector
-  namespace: demo-app
-spec:
-  replicas: 2 # Running 2 replicas ensures high availability across your nodes
-  selector:
-    matchLabels:
-      app: cloudflared
-  template:
-    metadata:
-      labels:
-        app: cloudflared
-    spec:
-      containers:
-      - name: cloudflared
-        image: cloudflare/cloudflared:latest
-        args:
-        - tunnel
-        - --no-autoupdate
-        - --protocol
-        - http2
-        - run
-        env:
-        - name: TUNNEL_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: cloudflare-tunnel-token
-              key: token

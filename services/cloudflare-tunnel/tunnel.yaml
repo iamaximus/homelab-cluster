@@ -5,7 +5,7 @@ metadata:
   name: cloudflared-connector
   namespace: core
 spec:
-  replicas: 2 # Running 2 replicas ensures high availability across your nodes
+  replicas: 2
   selector:
     matchLabels:
       app: cloudflared
