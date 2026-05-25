@@ -17,4 +17,5 @@ spec:
     persistence:
       enabled: true
       storageClass: local-path
-      size: 20Gi
+      size: 50Gi
+    existingSecret: minio-credentials
