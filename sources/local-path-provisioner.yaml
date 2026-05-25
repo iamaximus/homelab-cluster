@@ -1,5 +1,5 @@
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: GiRepository
+kind: GitRepository
 metadata:
   name: local-path-provisioner
   namespace: flux-system
