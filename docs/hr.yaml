@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: dobush-docs
+      chart: ./helm
       sourceRef:
         kind: GitRepository
         name: docs
