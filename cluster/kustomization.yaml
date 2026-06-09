@@ -5,4 +5,4 @@ resources:
   - secrets.yaml
   - sources.yaml
   - services.yaml
-  - demo-app.yaml
+  - docs.yaml
