@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: docs
+  namespace: docs
+spec:
+  chart:
+    spec:
+      chart: dobush-docs
+      sourceRef:
+        kind: GitRepository
+        name: docs
+        namespace: flux-system
+      version: 0.1.0
+  interval: 1m0s
