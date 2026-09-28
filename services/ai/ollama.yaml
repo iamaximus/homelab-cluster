@@ -20,10 +20,10 @@ spec:
         resources:
           requests:
             cpu: "400m"
-            memory: "512Mi"
+            memory: "2Gi"
           limits:
             cpu: "1"
-            memory: "1.5Gi"
+            memory: "4.5Gi"
         env:
         - name: OLLAMA_KEEP_ALIVE
           value: "5m"
