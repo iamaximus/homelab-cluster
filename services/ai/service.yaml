@@ -4,7 +4,7 @@ metadata:
   name: ollama
   namespace: ai
 spec:
-  clusterIP: ClusterIP
+  type: ClusterIP
   selector:
     app: ollama
   ports:
