@@ -5,3 +5,4 @@ resources:
   - metrics-server
   - cloudflare-tunnel
   # - minio
+  - ai

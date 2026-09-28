@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ollama
+  namespace: ai
+spec:
+  serviceName: ollama
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+      - name: ollama
+        image: ollama/ollama:latest
+        resources:
+          requests:
+            cpu: "2"
+            memory: "3Gi"
+          limits:
+            cpu: "4"
+            memory: "4.5Gi"
+        env:
+        - name: OLLAMA_KEEP_ALIVE
+          value: "5m"
+        - name: OLLAMA_NUM_PARALLEL
+          value: "1" 
+        volumeMounts:
+        - name: ollama-data
+          mountPath: /root/.ollama
+  volumeClaimTemplates:
+  - metadata:
+      name: ollama-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 20Gi
