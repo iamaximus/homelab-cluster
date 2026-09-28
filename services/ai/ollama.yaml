@@ -19,10 +19,10 @@ spec:
         image: ollama/ollama:latest
         resources:
           requests:
-            cpu: "400m"
-            memory: "2Gi"
-          limits:
             cpu: "1"
+            memory: "3Gi"
+          limits:
+            cpu: "2"
             memory: "4.5Gi"
         env:
         - name: OLLAMA_KEEP_ALIVE
