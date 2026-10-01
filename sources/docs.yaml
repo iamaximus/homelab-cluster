@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://github.com/iamaximus/docs.git
+  url: ssh://git@github.com/iamaximus/docs.git
   secretRef:
     name: github
   ref:
