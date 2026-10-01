@@ -15,3 +15,8 @@ kind: Namespace
 metadata:
   name: ai
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+---

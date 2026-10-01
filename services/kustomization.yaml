@@ -4,5 +4,5 @@ resources:
   - local-path-provisioner
   - metrics-server
   - cloudflare-tunnel
-  # - minio
+  - grafana
   # - ai
