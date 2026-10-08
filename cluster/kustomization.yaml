@@ -6,3 +6,4 @@ resources:
   - sources.yaml
   - services.yaml
   - docs.yaml
+  - routes.yaml
