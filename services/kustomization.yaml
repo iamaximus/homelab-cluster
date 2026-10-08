@@ -5,4 +5,5 @@ resources:
   - metrics-server
   - cloudflare-tunnel
   - grafana
+  - traefik
   # - ai
